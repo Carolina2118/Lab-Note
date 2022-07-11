@@ -1,15 +1,7 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";// se coloco un modulo.
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-
-// Your web app's Firebase configuration
+import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";// se coloco un modulo.
 
 const firebaseConfig = {
 
@@ -29,3 +21,6 @@ const auth = getAuth(); //para salir
  export function registro( email, password){
    return createUserWithEmailAndPassword(auth,email, password);
 }
+ export function useAuth(){
+    const[currentUser,setcurretUser]
+ }
