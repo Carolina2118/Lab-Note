@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";// se coloco un modulo.
-import { useEffect, useState } from "react";
+import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut} from "firebase/auth";// se coloco un modulo.
+import { useEffect, useInsertionEffect, useState } from "react";
 
 const firebaseConfig = {
 
@@ -22,8 +22,19 @@ const auth = getAuth(); //para salir
  export function registro( email, password){
    return createUserWithEmailAndPassword(auth,email, password);
 }
- export function useAuth(){
+
+export function cerrarSesion(){
+    return signOut(auth);
+}
+
+
+
+export function useAuth(){
     const[ usuarioActual, establecerUsuario ] = useState();
-    
+
+    useEffect(()=>{
+        const  unsub = onAuthStateChanged(auth,usuario =>{establecerUsuario(usuario)});
+        return unsub; 
+    },[])
     return usuarioActual;
  }
