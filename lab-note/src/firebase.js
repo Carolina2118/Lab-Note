@@ -2,6 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";// se coloco un modulo.
+import { useEffect, useState } from "react";
 
 const firebaseConfig = {
 
@@ -22,5 +23,7 @@ const auth = getAuth(); //para salir
    return createUserWithEmailAndPassword(auth,email, password);
 }
  export function useAuth(){
-    const[currentUser,setcurretUser]
+    const[ usuarioActual, establecerUsuario ] = useState();
+    
+    return usuarioActual;
  }
